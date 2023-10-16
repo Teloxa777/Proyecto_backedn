@@ -7,20 +7,20 @@ import 'dotenv/config'
 import user from "./routes/user.route.js"
 import {errorHandler} from "./middlewares/error.middleware.js"
 
-const app = express()
-app.use(express.json())
-app.use(express.urlencoded({extended: true}))
+const app1 = express()
+app1.use(express.json())
+app1.use(express.urlencoded({extended: true}))
 
-app.get('/', (req, res) => {
+app1.get('/', (req, res) => {
     res.send('Hello World')
 })
 
-app.use('/user',user)
-app.use('/user/find',user)
-app.use(errorHandler)
+app1.use('/user',user)
+app1.use('/user/find',user)
+app1.use(errorHandler)
 
 
-app.listen(process.env.PORT, () => {
+app1.listen(process.env.PORT, () => {
     console.log("Server running on port " + process.env.PORT)
 })
 
