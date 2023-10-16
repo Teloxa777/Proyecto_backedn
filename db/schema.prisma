@@ -1,0 +1,77 @@
+datasource db {
+    provider = "postgresql"
+    url = env("DB_URL")
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+// schema.prisma
+
+model Usuario {
+  ID_Usuario Int    @id @default(autoincrement())
+  Nombre     String
+  Correo     String  @unique
+  Contrasenia String
+  Direccion  String?
+  Telefono   String?
+    Carrito    Carrito[]
+    Orden      Orden[]
+}
+
+model Producto {
+  ID_Producto Int      @id @default(autoincrement())
+  Nombre     String
+  Descripcion String?
+  Precio     Float @default(0.00)
+  Stock      Int
+  Imagen     String?
+  ProductoOrden ProductoOrden[]
+  ProductoCarrito ProductoCarrito[]
+
+}
+
+model Orden {
+  ID_Orden Int      @id @default(autoincrement())
+  Fecha    DateTime @default(now())
+  Total    Float  @default(0.00)
+  Estado   String
+  ID_Usuario Int
+  ProductoOrden ProductoOrden[]
+  Usuario   Usuario @relation(fields: [ID_Usuario], references: [ID_Usuario])
+}
+
+model Carrito {
+  ID_Carrito Int      @id @default(autoincrement())
+  ID_Usuario Int
+  ProductoCarrito ProductoCarrito[]
+  Usuario    Usuario @relation(fields: [ID_Usuario], references: [ID_Usuario])
+}
+
+model ProductoOrden {
+  ID_Producto Int
+  ID_Orden    Int
+  Cantidad    Int
+  Producto    Producto @relation(fields: [ID_Producto], references: [ID_Producto])
+  Orden       Orden    @relation(fields: [ID_Orden], references: [ID_Orden])
+
+  @@id([ID_Producto, ID_Orden])
+}
+
+model ProductoCarrito {
+  ID_Producto Int
+  ID_Carrito  Int
+  Cantidad    Int
+  Producto    Producto @relation(fields: [ID_Producto], references: [ID_Producto])
+  Carrito     Carrito  @relation(fields: [ID_Carrito], references: [ID_Carrito])
+
+  @@id([ID_Producto, ID_Carrito])
+}
+
+model Administrador {
+  ID_Admin Int    @id @default(autoincrement())
+  Nombre   String
+  Correo   String  @unique
+  Contrasenia String
+
+}
