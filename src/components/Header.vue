@@ -1,7 +1,21 @@
 <template>
-    <header class="bg-cover bg-center relative" :style="{ backgroundImage: 'url(/assets/imagenes/fondo-pan.jpeg)' }">
-      <h1 class="text-xl font-bold text-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">Panadería Fresca</h1>
-      <p class="text-lg text-white absolute bottom-0 left-1/2 transform -translate-x-1/2">Los mejores panes directos del horno a tu casa.</p>
-    </header>
-  </template>
+  
+  <header class="bg-cover bg-center relative h-96 flex flex-col justify-center items-center" :style="{ backgroundImage: `url(${fondoPan})` }">
+     <h1 class="text-4xl font-bold text-white mb-4 shadow-lg p-2 bg-opacity-50 bg-black rounded">Panadería Fresca</h1>
+     <p class="text-lg text-white shadow-md p-2 bg-opacity-40 bg-black rounded">Los mejores panes directos del horno a tu casa.</p>
+  </header>
+</template>
+
+<script>
+import fondoPan from '@/assets/imagenes/fondo-pan.jpeg'
+
+export default {
+ data() {
+   return {
+     fondoPan
+   }
+ }
+}
+</script>
+
   
