@@ -68,7 +68,7 @@
     
     <Footer />
   </div>
-  <router-view></router-view>
+  <!--<router-view></router-view> -->
 </template>
 
 
@@ -91,8 +91,8 @@ export default {
   data() {
     return {
       productos: [
-        { id: 1, nombre: 'Pan1', imagen: '/assets/imagenes/pastel.png' },
-        { id: 2, nombre: 'Pan2', imagen: '/assets/imagenes/pastel.png' },
+        { id: 1, nombre: 'Pan1', imagen: '@/assets/imagenes/pastel.png' },
+        { id: 2, nombre: 'Pan2', imagen: '@/assets/imagenes/pastel.png' }
         // ... agregar los demás productos ...
       ]
     };
